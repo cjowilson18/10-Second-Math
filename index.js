@@ -1,6 +1,7 @@
 $(document).ready(function () {
  var timeRemaining = 10;
  var currentScore=0;
+ var highScore=0;
 $('#starter').click(function(){
     letsPlay();
     timerGo();
@@ -23,11 +24,19 @@ $('#starter').click(function(){
     }
     var updateCurrentScore= function (point){
         currentScore+=point;
+        highScoreChecker(currentScore);
         $('.scoreCounter').text("Current Score: " + currentScore)
     }
     var updateTimeRemaining = function (amount) {
         timeRemaining += amount;
         $('#timer').text("Time Remaining: " + timeRemaining + 's');
+    }
+
+    var highScoreChecker= function (score) {
+        if (score > highScore) {
+            highScore=score;
+        }
+        $('.highScore').text('Highscore: ' + highScore);
     }
 
     var letsPlay = function () {
